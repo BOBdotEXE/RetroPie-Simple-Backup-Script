@@ -1,0 +1,21 @@
+#Simple backup script (by BOBdotEXE)
+#!/bin/bash
+echo Creating Save File backup now!
+workingDir="/home/pi/RetroPie/roms/"
+backupDir="/home/pi/RetroPie/roms/backups"
+#backup dir may be relitive.
+cd  $workingDir
+#USA format
+timestamp="$(date +'%m-%d-%Y_%H.%M.%S')"
+#Proper format
+#timestamp="$(date +'%d-%m-%Y_%H.%M.%S')"
+[ -d $backupDir ] || mkdir $backupDir 
+find . | egrep "\.(sav|srm)$" | zip -@ $backupDir/Backup-"$timestamp".zip
+md5=($(md5sum "$backupDir"/Backup-"$timestamp".zip))
+echo $md5 >> "$backupDir"/Backup-"$timestamp".md5
+echo " "
+echo "Backup Completed!"
+echo "Saved to $(date +'%m-%d-%Y_%H.%M.%S').zip"
+echo "And md5 created for verification!"
+
+
