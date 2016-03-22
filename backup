@@ -1,20 +1,30 @@
 #!/bin/bash
-#Simple backup script v1.3 (by BOBdotEXE)
+#Simple backup script v1.4 (by BOBdotEXE)
+echo "Simple Backup script v 1.4 (beta) By BOBdotEXE"
+echo "github.com/BOBdotEXE/RetroPie-Simple-Backup-Script"
+echo " "
 echo Creating Save File backup now!
 workingDir="/home/pi/RetroPie/roms/"
 backupDir="/home/pi/RetroPie/roms/backups"
 archiveFolderName="RetroPiSaves"
 #backup dir may be relitive.
 cd  $workingDir
+#Get date varibles for folders
+Y=$(date +'%Y')
+M=$(date +'%b')
+D=$(date +'%d')
 #USA format
 timestamp="$(date +'%m-%d-%Y_%H.%M.%S')"
 #Proper format
 #timestamp="$(date +'%d-%m-%Y_%H.%M.%S')"
 [ -d $backupDir ] || mkdir $backupDir 
 [ -d $backupDir/$archiveFolderName ] || mkdir $backupDir/$archiveFolderName
-find . | egrep "\.(sav|srm)$" | zip -@ $backupDir/"$archiveFolderName"/Backup-"$timestamp".zip
-md5=($(md5sum "$backupDir"/"$archiveFolderName"/Backup-"$timestamp".zip))
-echo $md5 >> "$backupDir"/"$archiveFolderName"/Backup-"$timestamp".md5
+[ -d $backupDir/$archiveFolderName/$Y ] || mkdir $backupDir/$archiveFolderName/$Y 
+[ -d $backupDir/$archiveFolderName/$Y/$M ] || mkdir $backupDir/$archiveFolderName/$Y/$M
+[ -d $backupDir/$archiveFolderName/$Y/$M/$D ] || mkdir $backupDir/$archiveFolderName/$Y/$M/$D
+find . | egrep "\.(sav|srm)$" | zip -@ $backupDir/"$archiveFolderName"/$Y/$M/$D/Backup-"$timestamp".zip
+md5=($(md5sum "$backupDir"/"$archiveFolderName"/$Y/$M/$D/Backup-"$timestamp".zip))
+echo $md5 >> "$backupDir"/"$archiveFolderName"/$Y/$M/$D/Backup-"$timestamp".md5
 echo " "
 echo "Backup Completed!"
 echo "Saved to $(date +'%m-%d-%Y_%H.%M.%S').zip"
@@ -22,3 +32,4 @@ echo "And md5 created for verification!"
 echo "Uploading to Google Drive..."
 cd $backupDir
 ./drive push
+
