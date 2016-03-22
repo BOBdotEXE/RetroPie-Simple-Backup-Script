@@ -1,8 +1,9 @@
 #!/bin/bash
-#Simple backup script (by BOBdotEXE)
+#Simple backup script v1.3 (by BOBdotEXE)
 echo Creating Save File backup now!
 workingDir="/home/pi/RetroPie/roms/"
 backupDir="/home/pi/RetroPie/roms/backups"
+archiveFolderName="RetroPiSaves"
 #backup dir may be relitive.
 cd  $workingDir
 #USA format
@@ -10,9 +11,10 @@ timestamp="$(date +'%m-%d-%Y_%H.%M.%S')"
 #Proper format
 #timestamp="$(date +'%d-%m-%Y_%H.%M.%S')"
 [ -d $backupDir ] || mkdir $backupDir 
-find . | egrep "\.(sav|srm)$" | zip -@ $backupDir/Backup-"$timestamp".zip
-md5=($(md5sum "$backupDir"/Backup-"$timestamp".zip))
-echo $md5 >> "$backupDir"/Backup-"$timestamp".md5
+[ -d $backupDir/$archiveFolderName ] || mkdir $backupDir/$archiveFolderName
+find . | egrep "\.(sav|srm)$" | zip -@ $backupDir/"$archiveFolderName"/Backup-"$timestamp".zip
+md5=($(md5sum "$backupDir"/"$archiveFolderName"/Backup-"$timestamp".zip))
+echo $md5 >> "$backupDir"/"$archiveFolderName"/Backup-"$timestamp".md5
 echo " "
 echo "Backup Completed!"
 echo "Saved to $(date +'%m-%d-%Y_%H.%M.%S').zip"
@@ -20,4 +22,3 @@ echo "And md5 created for verification!"
 echo "Uploading to Google Drive..."
 cd $backupDir
 ./drive push
-
