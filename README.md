@@ -109,9 +109,11 @@ from there run:
  
 and  save the file!
  
-this will make it run every time you start up!
- 
-(but for some reason, it will not make an md5)
+This will make it run every time you start up!
+**Please note, if you're using wifi,then this script will likley run BEFORE wifi can be connected.**
+This is no a big deal, you're backup *still* happens, it just means it's not synced untill the next manal backup,
+or the next timed (nightly) backup.
+
  
 **If you also want to make nightly backups, you can do that too!**
  
