@@ -98,6 +98,8 @@ from there run:
    
 **Step 6:** (automatic backups!)
  
+ **(Please Note, at this time automatic backup, are only backed up locally, but they will sync to the cloud at your next manual backup)**
+ 
  edit your root cron jobs.
  
     sudo crontab -e
