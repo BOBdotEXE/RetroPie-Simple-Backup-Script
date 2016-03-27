@@ -79,10 +79,14 @@ from there run:
    
    That should get your account all set up.
   
-  *Step 4:* (optinal, but suggested!) so drive dose not always ask us to confirm each upload,
-  create a new file called: *.driverc*  (yes, with the '.' before the name)
+  **Step 4:** (optinal, but suggested!) so drive dose not always ask us to confirm each upload,
+   
+  create a new file called: *.driverc*  (yes, with the '.' before the name) in the same folder as *'drive'*
+   
   In side of it, you'll only need one line of text:
+   
       no-prompt=true
+ 
   Then save, and close the file.
   And now google drive syncing should be all set!
 
