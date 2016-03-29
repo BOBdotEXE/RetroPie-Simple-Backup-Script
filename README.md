@@ -65,7 +65,9 @@ Download the [latest version of drive](https://github.com/BOBdotEXE/RetroPie-Sim
   
 I compiled it from the source code, on my pi3, but it should at least work on the Pi2.
  
-You can find an older version [here](https://github.com/odeke-em/drive/releases/download/v0.2.2-arm-binary/drive-arm-binary), [Source](https://www.raspberrypi.org/forums/viewtopic.php?p=801697#p801697) (rename it to: *drive*)
+You can find an older version [here](https://github.com/odeke-em/drive/releases/download/v0.2.2-arm-binary/drive-arm-binary), [Source](https://www.raspberrypi.org/forums/viewtopic.php?p=801697#p801697) 
+ 
+ 
  
 <a name="s2"></a>
  
@@ -110,6 +112,8 @@ from there run:
 
      mv drive .drive
  
+  
+  Once it's renamed to *.drive* it will be hidden, so if you can't see it, don't freak out!
   
 <a name="s4"></a> 
   
