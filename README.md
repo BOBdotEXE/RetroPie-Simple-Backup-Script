@@ -16,9 +16,11 @@ I make a simple shell script to backup all your RetroPie save files!
   6. [Step 4: Making the bakups not require user input (optinal)](#s4)
   7. [Step 5: Running the backup script for the first time!](#s5)
   8. [Step 6: Setting up Automatic Bakups](#s6)
-  9. [Step 7: (Optinal) Nihgtly backups ](#night)
+  9. [Step 7: (Optinal) Nigtly backups ](#nite)
+  10. [Configuring the script for custom settings](#conf)
 
 <a name="do"></a>
+## What can this script do?
  
 * It backs up all your saves to a folder that's on the default samba share, so you can easily transfer the dumps to your PC.
 
@@ -54,7 +56,9 @@ Ok, Ready? one, two, three, let's Jam!
 
 <a name="s1"></a>
  
-**Step 1:** download the [latest version of drive](http://www.mediafire.com/download/439bq3bcbdgd8bn/drive) 
+## Step 1: Getting the sync program 'Drive'
+
+Download the [latest version of drive](https://github.com/BOBdotEXE/RetroPie-Simple-Backup-Script/releases/download/1.4/drive) 
 
  
 [md5: 462e5b2ccf9ad4b98dde5c7cdaede17d]
@@ -63,9 +67,9 @@ I compiled it from the source code, on my pi3, but it should at least work on th
  
 You can find an older version [here](https://github.com/odeke-em/drive/releases/download/v0.2.2-arm-binary/drive-arm-binary), [Source](https://www.raspberrypi.org/forums/viewtopic.php?p=801697#p801697) (rename it to: *drive*)
  
-<a name="s1"></a>
+<a name="s2"></a>
  
-**Step 2:**
+## Step 2: Setting up your backup folder
  
 If you have not yet, Pick a folder where you want your backups stored.
  
@@ -79,7 +83,8 @@ then place *drive* in your backups folder, and make sure it's marked as executab
  
 <a name="s3"></a>
  
-**Step 3:** 
+## Step 3: Setting up Cloud sync
+
 And then go back to the backup script, and open it with your favorite text editor, and edit the 'backupDir' and replace the string "/home/pi/RetroPie/roms/backups"  **If** you're using a different folder.
  
 Now open a terminal (or ssh) and navigate to your backups folder.
@@ -108,7 +113,10 @@ from there run:
   
 <a name="s4"></a> 
   
-  **Step 4:** (optinal, but suggested!) so drive dose not always ask us to confirm each upload,
+  
+## Step 4: Making the bakups not require user input (optinal)
+  
+  (optinal, but suggested!) so drive dose not always ask us to confirm each upload,
    
   create a new file called: *.driverc*  (yes, with the '.' before the name) in the same folder as *'drive'*
    
@@ -121,7 +129,8 @@ from there run:
   
 <a name="s5"></a>
  
-**Step 5:**
+## Step 5: Running the backup script for the first time!
+
   if you have not yet, mark the main script as executable.
  
     chmod +x ~/backup
@@ -138,7 +147,7 @@ from there run:
    
 <a name="s6"></a>
  
-**Step 6:** (automatic backups!)
+## Step 6: Setting up Automatic Bakups
  
  **(Please Note, at this time automatic backup, are only backed up locally, but they will sync to the cloud at your next manual backup)**
  
@@ -155,6 +164,8 @@ This will make it run every time you start up!
 
 <a name="nite"></a>
  
+## Step 7: (Optinal) Nightly backups
+ 
 **If you also want to make nightly backups, you can do that too!**
  
 For nightly just before midnight, you'll edit your own cron jobs:
@@ -168,6 +179,68 @@ You can add more if you want, just copy the line and change the times, like "59 
 
 and  save the file!
 
+<a name="conf"></a>
 
+## Configuring the script for custom settings
+This script should be pretty easy to undertsand, but I'll go over a few of the settings,
+ 
+First, open the script with any text editor, and we'll go over each main line that you can change.
+
+To change the folder where you save files are red from. (why???) just edit the *7th line*:
+ 
+     *workingDir="/home/pi/RetroPie/roms/"*
+ 
+ Simply change that to wherever your roms/saves are.
+
+ 
+To change where your backups are stored edit *line 9*:
+ 
+     *backupDir="/home/pi/RetroPie/roms/backups"*
+ 
+Next If you want to change the backup storage folder name, you can do that with *line 11*:
+ 
+      *archiveFolderName="RetroPiSaves"*
+ 
+ If you want to add a suffex to all the backup, for example if using 2 pi's you want to make one's backups end with "-MainPie", buy default, none are used. if you add one they will be called something like: *"15.04.02_03-29-2016-MainPie.zip"*
+  
+     backupSuffex=""
+ 
+If you *don't* live in the USA, and want all your backups to use the proper format: *Day-Month-Year
+ 
+ Simply go down to lines *27-28*:
+  
+     #USA format
+     
+     timestamp="$(date +'%H.%M.%S_%m-%d-%Y')"
+     
+     #Proper format
+     
+     #timestamp="$(date +'%H.%M.%S_%d-%m-%Y')"   
+
+And comment out *line 28*, and uncomment *line 30*, then it should look like this:
+
+     #USA format
+
+     #timestamp="$(date +'%H.%M.%S_%m-%d-%Y')"
+ 
+     #Proper format
+
+     timestamp="$(date +'%H.%M.%S_%d-%m-%Y')" 
+
+ With one-way sync (always upload, never download), Deleteing the files in google Drive **WILL NOT** remove them from the PI,
+ (and any files deleted from the cloud will be re-uploaded next sync).
+  
+ To enable one way sync, go to *line 18*:
+  
+     ./.drive pull
+     
+ And change it to:
+  
+       #./.drive pull
+ 
+
+---
+ 
    If you have any quesions for now, I guess you can ask them in the redit thread for this project:
    https://www.reddit.com/r/RetroPie/comments/4bdx0h/simple_configurable_script_to_back_up_all_save/
+
