@@ -1,7 +1,7 @@
 # RetroPie Simple Backup Script
 Hey guys!
  
-I make a simple shell script to backup all your RetroPie  save files!
+I make a simple shell script to backup all your RetroPie save files!
  
 **(Now with Cloud backups! scroll to the bottom for the cloud setup)**
  
@@ -28,7 +28,7 @@ Enjoy!
  
 You can find the new cloud enabled version [HERE!](https://github.com/BOBdotEXE/RetroPie-Simple-Backup-Script/releases/)
  
-Archive md5: 8956552db8f73e75416c515ca8fdfcb6 
+You can place this script anywhere, but this guide will assume you put it in your home folder *(/home/pi/backup)*
  
 **PLEASE! DO NOT USE YOUR MAIN GOOGLE ACCOUNT FOR THIS!**
  
@@ -39,6 +39,7 @@ Archive md5: 8956552db8f73e75416c515ca8fdfcb6
 Ok, Ready? one, two, three, let's Jam!
  
 **Step 1:** download the [latest version of drive](http://www.mediafire.com/download/439bq3bcbdgd8bn/drive) 
+
  
 [md5: 462e5b2ccf9ad4b98dde5c7cdaede17d]
   
@@ -72,12 +73,18 @@ from there run:
     drive init /home/pi/RetroPie/roms/backups
 
  Replacing */home/pi/RetroPie/roms/backups* with your backup path,
+
  
  From here you'll be given a URL to visit, **Make sure you ONLY open that url when signed into your second/extra google account!!*
   
   That url will give you a code, copy and past that code back in the terminal where you ran *drive init*, then press enter.
    
    That should get your account all set up.
+   
+  Now Rename *drive* to *.drive* so it dose not get added to google drive :P
+
+     mv drive .drive
+ 
   
   **Step 4:** (optinal, but suggested!) so drive dose not always ask us to confirm each upload,
    
@@ -95,7 +102,12 @@ from there run:
  
     chmod +x ~/backup
 
+ Next we'll need to install zip, so we can make compressed archives
+
+    sudo apt-get install zip
+
   Now run the script! 
+
     ~/backup
   
   And it should backup your files, and Automatically Sync them to google Drive!
@@ -104,21 +116,16 @@ from there run:
  
  **(Please Note, at this time automatic backup, are only backed up locally, but they will sync to the cloud at your next manual backup)**
  
- edit your root cron jobs.
- 
-    sudo crontab -e
- simply scroll to the bottom and add:
- 
-    @reboot pi /home/pi/backup
+To make the system backup your saves everytime you boot
+ Edit */etc/rc.local* and make a new line before exit, and type:
+
+     runuser -l  pi -c /home/pi/backup
 
 (change *'/home/pi/backup'* to the path of your script)
  
 and  save the file!
  
 This will make it run every time you start up!
-**Please note, if you're using wifi,then this script will likley run BEFORE wifi can be connected.**
-This is no a big deal, you're backup *still* happens, it just means it's not synced untill the next manal backup,
-or the next timed (nightly) backup.
 
  
 **If you also want to make nightly backups, you can do that too!**
@@ -128,7 +135,10 @@ For nightly just before midnight, you'll edit your own cron jobs:
     crontab -e
  simply scroll to the bottom and add:
  
-    59 23 * * * pi /home/pi/backup 
+    59 23 * * *  /home/pi/backup 
+
+You can add more if you want, just copy the line and change the times, like "59 11 * * *..." for noon backups, or 
+
 and  save the file!
 
 
