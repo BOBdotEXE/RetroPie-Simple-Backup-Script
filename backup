@@ -1,6 +1,6 @@
 #!/bin/bash
 #Simple backup script v1.4 (by BOBdotEXE)
-echo "Simple Backup script v 1.4 (beta) By BOBdotEXE"
+echo "Simple Backup script v 1.4 By BOBdotEXE"
 echo "github.com/BOBdotEXE/RetroPie-Simple-Backup-Script"
 echo " "
 #Directory where roms/saves are stored
@@ -15,7 +15,7 @@ backupSuffex=""
 cd $backupDir
 echo Syncing changes..
 #comment out for oneway sync vvv
-./drive pull
+./.drive pull
 echo " "
 echo Creating Save File backup now!
 echo " "
@@ -43,6 +43,6 @@ echo "And md5 created for verification!"
 echo " "
 echo "Uploading to Google Drive..."
 cd $backupDir
-./drive push
+./.drive push
 echo " "
 echo Complete!
