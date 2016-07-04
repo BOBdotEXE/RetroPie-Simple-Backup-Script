@@ -1,4 +1,4 @@
-# RetroPie Simple Backup Script
+# RetroPie / RecalBox Simple Backup Script
 Hey guys!
  
 I make a simple shell script to backup all your RetroPie save files!
