@@ -1,6 +1,6 @@
 #!/bin/bash
-#Simple backup script v1.4 (by BOBdotEXE)
-echo "Simple Backup script v 1.4 By BOBdotEXE"
+#Simple backup script v1.5 (by BOBdotEXE)
+echo "Simple Backup script v 1.5 By BOBdotEXE"
 echo "github.com/BOBdotEXE/RetroPie-Simple-Backup-Script"
 echo " "
 #Directory where roms/saves are stored
@@ -15,14 +15,14 @@ backupSuffex=""
 cd $backupDir
 echo Syncing changes..
 #comment out for oneway sync vvv
-./.drive pull
+$workingDir/drive pull
 echo " "
 echo Creating Save File backup now!
 echo " "
 cd  $workingDir
 #Get date varibles for folders
 Y=$(date +'%Y')
-M=$(date +'%b')
+M=$(date +'%m-%b')
 D=$(date +'%d')
 #USA format
 timestamp="$(date +'%H.%M.%S_%m-%d-%Y')"
@@ -43,6 +43,6 @@ echo "And md5 created for verification!"
 echo " "
 echo "Uploading to Google Drive..."
 cd $backupDir
-./.drive push
+$workingDir/drive push
 echo " "
 echo Complete!
