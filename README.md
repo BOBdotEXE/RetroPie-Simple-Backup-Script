@@ -2,6 +2,8 @@
 Hey guys!
  
 I make a simple shell script to backup all your RetroPie save files!
+
+ [Get the latest version HERE!](https://github.com/BOBdotEXE/RetroPie-Simple-Backup-Script/releases/) 
  
 **(Now with Cloud backups!)**
  
@@ -42,7 +44,7 @@ Enjoy!
  
 ## Getting Started!
 
-You can find the new cloud enabled version [HERE!](https://github.com/BOBdotEXE/RetroPie-Simple-Backup-Script/releases/)
+You can find the newist cloud enabled version [HERE!](https://github.com/BOBdotEXE/RetroPie-Simple-Backup-Script/releases/)
  
 You can place this script anywhere, but this guide will assume you put it in your home folder *(/home/pi/backup)*
  
