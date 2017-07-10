@@ -4,7 +4,7 @@ echo "Simple Backup script v 1.5 By BOBdotEXE"
 echo "github.com/BOBdotEXE/RetroPie-Simple-Backup-Script"
 echo " "
 #Directory where roms/saves are stored
-workingDir="/home/pi/RetroPie/roms/"
+workingDir="/home/pi/RetroPie/roms"
 #Save bacup location
 backupDir="/home/pi/RetroPie/roms/backups"
 #Name for the root backups folder (will be placed INSIDE of your 'backup location'
