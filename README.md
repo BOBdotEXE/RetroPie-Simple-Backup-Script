@@ -97,7 +97,7 @@ Now open a terminal (or ssh) and navigate to your backups folder.
   
 from there run:
  
-    drive init /home/pi/RetroPie/roms/backups
+    ./drive init /home/pi/RetroPie/roms/backups
 
  Replacing */home/pi/RetroPie/roms/backups* with your backup path,
 
