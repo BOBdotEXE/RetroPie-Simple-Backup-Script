@@ -113,7 +113,7 @@ from there run:
      mv drive .drive
  
   
-  Once it's renamed to *.drive* it will be hidden, so if you can't see it, don't freak out!
+  Once it's renamed to *.drive* it will be hidden, so if you can't see it, doesn't freak out!
   
 <a name="s4"></a> 
   
@@ -192,15 +192,20 @@ First, open the script with any text editor, and we'll go over each main line th
 
 To change the folder where you save files are red from. (why???) just edit the *7th line*:
  
-     *workingDir="/home/pi/RetroPie/roms/"*
+(Make sure you **don't** put an extra **/** at the end)
+ 
+     workingDir="/home/pi/RetroPie/roms" 
  
  Simply change that to wherever your roms/saves are.
 
  
 To change where your backups are stored edit *line 9*:
  
-     *backupDir="/home/pi/RetroPie/roms/backups"*
+(Make sure you **don't** put an extra **/** at the end)
  
+     backupDir="/home/pi/RetroPie/roms/backups"
+ 
+
 Next If you want to change the backup storage folder name, you can do that with *line 11*:
  
       *archiveFolderName="RetroPiSaves"*
